@@ -133,7 +133,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   - **convertBamtToFastq.pl**: Converts a bam file to fastq file. Need to run this individually for each R1 and R2 for 10X data
   - **runFinalSTAR.sh**: Runs a STAR command individually on each human and mouse dataset produced from original dataset
   
-    <i>Note: To know more about the arguments of these files take, reads the header comments within each file.</i>
+  <i>Note: To know more about the arguments of these files take, reads the header comments within each file.</i>
   
 ### DataMart Files
 Present in the holab storage directory: <code>/storage/holab/datamart</code>
@@ -145,6 +145,8 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
   - **chimera_index**: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
   - **STAR**: Executable directory of STAR version 2.7.3a
   - **samtools-1.10**: Executable directory of samtools version samtools 1.10
+  
+  <i>Note: It is highly recommended to get the latest version of samtools and starsolo and better to obtain the latest human and mouse annotation gtf files as well.</i>
 
 ## Time Complexity
 The time it takes to run the script is directly related to the size of the fastq files fed. On running the script on R1(7.2GB) and R2(7.7GB) fastq files, it took around 2hr 20min hours to complete the whole process.
