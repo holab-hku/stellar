@@ -70,6 +70,8 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   - **convertBamtToFastq.pl**: Converts a bam file to fastq file. Need to run this individually for each R1 and R2 for 10X data
   - **runFinalSTAR.sh**: Runs a STAR command individually on each human and mouse dataset produced from original dataset
   
+    <i>Note: To know more about the arguments of these files take, reads the header comments within each file.</i>
+  
 ### DataMart Files
 Present in the holab storage directory: <code>/storage/holab/datamart</code>
   - **gencode.v33.unique_gene_names.gtf**: Human gtf fie with unique gene names
