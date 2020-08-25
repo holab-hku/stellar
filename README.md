@@ -63,23 +63,23 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
 ## File Hierarchy
 
 ### Stellar Files
-  - stellar.pl: The main script that contains the logic of running stellar
-  - convert_to_genes_cells_matrices.r: Converts dense matrix to sparse using R package Seurat. The output file is matrix.csv
-  - runSTARAnalysis.sh: Runs STAR command and then runs convert_to_genes_cells_matrices.r on it to produce a matrix.csv
-  - classify_barcodes_pipeline.pl: This script uses matrix.cvs to create a labelled file classifying each barcode in the raw input data as either human/mouse or unspecified
-  - convertBamtToFastq.pl: Converts a bam file to fastq file. Need to run this individually for each R1 and R2 for 10X data
-  - runFinalSTAR.sh: Runs a STAR command individually on each human and mouse dataset produced from original dataset
+  - **stellar.pl**: The main script that contains the logic of running stellar
+  - **convert_to_genes_cells_matrices.r**: Converts dense matrix to sparse using R package Seurat. The output file is matrix.csv
+  - **runSTARAnalysis.sh**: Runs STAR command and then runs convert_to_genes_cells_matrices.r on it to produce a matrix.csv
+  - **classify_barcodes_pipeline.pl**: This script uses matrix.cvs to create a labelled file classifying each barcode in the raw input data as either human/mouse or unspecified
+  - **convertBamtToFastq.pl**: Converts a bam file to fastq file. Need to run this individually for each R1 and R2 for 10X data
+  - **runFinalSTAR.sh**: Runs a STAR command individually on each human and mouse dataset produced from original dataset
   
 ### DataMart Files
 Present in the holab storage directory: <code>/storage/holab/datamart</code>
-  - gencode.v33.unique_gene_names.gtf: Human gtf fie with unique gene names
-  - gencode.vM24.unique_gene_names.gtf: Mouse gtf with unique gene names
-  - gencode.v33.vM24.concat.unique_gene_names.gtf : Concatenated human + mouse gtf file with unique gene names
-  - human_index: Indexed files generated using human genome
-  - mouse_index: Indexed files generated using mouse genome
-  - chimera_index: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
-  - STAR: Executable directory of STAR version 2.7.3a
-  - samtools-1.10: Executable directory of samtools version samtools 1.10
+  - **gencode.v33.unique_gene_names.gtf**: Human gtf fie with unique gene names
+  - **gencode.vM24.unique_gene_names.gtf**: Mouse gtf with unique gene names
+  - **gencode.v33.vM24.concat.unique_gene_names.gtf**: Concatenated human + mouse gtf file with unique gene names
+  - **human_index**: Indexed files generated using human genome
+  - **mouse_index**: Indexed files generated using mouse genome
+  - **chimera_index**: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
+  - **STAR**: Executable directory of STAR version 2.7.3a
+  - **samtools-1.10**: Executable directory of samtools version samtools 1.10
 
 ## Time Complexity
-The time it takes to run the script is directly related to the size of the fastq files fed. 
+The time it takes to run the script is directly related to the size of the fastq files fed. On running the script on R1(7.2GB) and R2(7.7GB) fastq files, it took aronund 4 hours to complete the whole process.
