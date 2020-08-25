@@ -144,12 +144,12 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
   - **mouse_index**: Indexed files generated using mouse genome
   - **chimera_index**: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
   - **processed_gtf_files**: This directory contains the files for producing concatenated(human+mouse) gtf and raw human and mouse gtfs<br/>
-      |<br/>
-      |__ create_gtf.pl: Contains the logic to obtain individual and concatenated versions of human and mouse gtfs because of common gene names between mouse and human gtfs<br/>
-      |<br/>
-      |__ gencode.v33.chr_patch_hapl_scaff.annotation.gtf:  Original human gtf otained from the web<br/>
-      |<br/>
-      |__ gencode.vM24.chr_patch_hapl_scaff.annotation.gtf: Original mouse gtf otained from the web<br/>
+      │<br/>
+      └── **create_gtf.pl**: Contains the logic to obtain individual and concatenated versions of human and mouse gtfs because of common gene names between mouse and human gtfs<br/>
+      │<br/>
+      └──  **gencode.v33.chr_patch_hapl_scaff.annotation.gtf**:  Original human gtf otained from the web<br/>
+      │<br/>
+      └──  **gencode.vM24.chr_patch_hapl_scaff.annotation.gtf**: Original mouse gtf otained from the web<br/>
       
   - **STAR**: Executable directory of STAR version 2.7.3a
   - **samtools-1.10**: Executable directory of samtools version samtools 1.10
