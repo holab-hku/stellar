@@ -4,17 +4,19 @@ use strict; use warnings;
 my $MIN_COUNT = 1;
 
 die"
-Usage: output_percent_mouse_genes_per_barcode.pl <Path/to/gencode.vM24.unique_gene_names.gtf> <Path/to/gencode.v33.unique_gene_names.gtf>
-" unless @ARGV==4;
+Usage: output_percent_mouse_genes_per_barcode.pl <Path/to/gencode.vM24.unique_gene_names.gtf> <Path/to/gencode.v33.unique_gene_names.gtf> <base_output_dir> <type> <threshold>
+" unless @ARGV==5;
 
-my ($mouse_gtf, $human_gtf, $path, $type) = ($ARGV[0], $ARGV[1], $ARGV[2], $ARGV[3]);
+my ($mouse_gtf, $human_gtf, $path, $type, $threshold) = ($ARGV[0], $ARGV[1], $ARGV[2], $ARGV[3], $ARGV[4]);
 
+#Checking if correct files have been input
 if ($mouse_gtf !~ /.*gencode.vM24.unique_gene_names.gtf/) {
 	die "mouse gtf isn't gencode.vM24.unique_gene_names.gtf\n";
 } elsif ($human_gtf !~ /.*gencode.v33.unique_gene_names.gtf/) {
 	die "human gtf isn't gencode.v33.unique_gene_names.gtf\n";
 }
 
+#Reading the gene names from gtf files
 my %all_genes;
 #get whole set of mouse genes and human genes
 for my $species (qw(mouse human)) {
@@ -39,6 +41,14 @@ for my $species (qw(mouse human)) {
 	close $IN;
 	
 }
+
+### The following three variants are supported:
+# chimera: Goes through all variants of experiment 5s(mix with different proportions of human & mouse) and outputs a label file for each exp
+# stellar: Goes through one directory processFiles
+# <else>: Goes through human and mouse directory
+#
+# In general, it takes the matrix.csv file from the STAR results and output a labelled csv file. The three types above are designed with respect to the directory structure
+
 
 if($type eq "chimera"){
 	for my $exp (qw(5.1 5.2 5.3)) {
@@ -92,10 +102,10 @@ if($type eq "chimera"){
 			}
 			
 			my $mouse_genes_pct = ($count_expressed_barcodes_gene{$barcode}{"mouse"} / $tot_genes) * 100;
-			if($mouse_genes_pct>=80){
+			if($mouse_genes_pct>=$threshold){
 				print $OUT $barcode . ",mouse\n";
 			}
-			elsif($mouse_genes_pct<=20){
+			elsif($mouse_genes_pct<=100-$threshold){
 				print $OUT $barcode . ",human\n";
 			}
 			else{
@@ -164,10 +174,10 @@ elsif($type eq "stellar"){
 			}
 			
 			my $mouse_genes_pct = ($count_expressed_barcodes_gene{$barcode}{"mouse"} / $tot_genes) * 100;
-			if($mouse_genes_pct>=80){
+			if($mouse_genes_pct>=$threshold){
 				print $OUT $barcode . ",mouse\n";
 			}
-			elsif($mouse_genes_pct<=20){
+			elsif($mouse_genes_pct<=100-$threshold){
 				print $OUT $barcode . ",human\n";
 			}
 			else{
@@ -234,10 +244,10 @@ else{
 			}
 			
 			my $mouse_genes_pct = ($count_expressed_barcodes_gene{$barcode}{"mouse"} / $tot_genes) * 100;
-			if($mouse_genes_pct>=80){
+			if($mouse_genes_pct>=$threshold){
 				print $OUT $barcode . ",mouse\n";
 			}
-			elsif($mouse_genes_pct<=20){
+			elsif($mouse_genes_pct<=100-$threshold){
 				print $OUT $barcode . ",human\n";
 			}
 			else{
