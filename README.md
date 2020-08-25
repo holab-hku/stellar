@@ -4,7 +4,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
 
 ## Usage?
 <ol>
-  <li> <strong>Bring prelimiary files from the storage directory to your personal account:</strong> <code>cp -r /storage/holab/datamart {your personalised path}</code></li>
+  <li> <strong>Bring preliminary files from the storage directory to your personal account:</strong> <code>cp -r /storage/holab/datamart {your personalised path}</code></li>
   <li> <strong>Put <i>STARsolo</i> and <i>samtools</i> to path:</strong> It is recommended to fetch the latest version of these two softwares to get the enhanced experience but a copy of executables is present in the storage directory:
     <code>/storage/holab/datamart/STAR</code> & <code>/storage/holab/datamart/samtools-1.10</code><br/><br/>
     <i>To put these into path:</i><br/>
@@ -84,7 +84,7 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
   - **samtools-1.10**: Executable directory of samtools version samtools 1.10
 
 ## Time Complexity
-The time it takes to run the script is directly related to the size of the fastq files fed. On running the script on R1(7.2GB) and R2(7.7GB) fastq files, it took aronund 4 hours to complete the whole process.
+The time it takes to run the script is directly related to the size of the fastq files fed. On running the script on R1(7.2GB) and R2(7.7GB) fastq files, it took around 2hr 20min hours to complete the whole process.
 
 
 ## Caution
