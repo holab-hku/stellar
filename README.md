@@ -151,7 +151,7 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
       |<br/>
       |__  **gencode.v33.chr_patch_hapl_scaff.annotation.gtf**:  Original human gtf otained from the web<br/>
       |<br/>
-      |__  **gencode.vM24.chr_patch_hapl_scaff.annotation.gtf**: Original mouse gtf otained from the web<br/>
+      |__  **gencode.vM24.chr_patch_hapl_scaff.annotation.gtf**: Original mouse gtf otained from the web but m was appended to each line to mkae the chromosome name to mchr to differentiate from human<br/>
       
   - **STAR**: Executable directory of STAR version 2.7.3a
   - **samtools-1.10**: Executable directory of samtools version samtools 1.10
