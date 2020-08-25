@@ -85,3 +85,7 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
 
 ## Time Complexity
 The time it takes to run the script is directly related to the size of the fastq files fed. On running the script on R1(7.2GB) and R2(7.7GB) fastq files, it took aronund 4 hours to complete the whole process.
+
+
+## Caution
+This stellar version was tested on v3 chemistry 10X dataset If there's any error thrown by STAR command, it is likely that some parameters might need to be changed within the command. These changes should be made in the STAR commands present in runSTARAnalysis.sh & runFinalSTAR.sh.
