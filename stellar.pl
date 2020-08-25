@@ -3,24 +3,24 @@ use strict; use warnings;
 use POSIX;
 
 #Getting arguments from command line
-my ($Fastq1, $Fastq2, $base_output_dir) = ($ARGV[0], $ARGV[1], $ARGV[2]);
+my ($Fastq1, $Fastq2, $chimera_genome, $barcode_whitelist, $gtf_human, $gtf_mouse, $mouse_index, $human_index, $threshold, $base_output_dir) = ($ARGV[0], $ARGV[1], $ARGV[2], $ARGV[3], $ARGV[4], $ARGV[5], $ARGV[6], $ARGV[7], $ARGV[8], $ARGV[9]);
 
 #The chimera genome index directory: Mouse and Human index concatenated
-my $genome_dir = "/home/msnaveed/sra_local_repo/chimera_index/v3";
+my $genome_dir = $chimera_genome;#"/home/msnaveed/sra_local_repo/chimera_index/v3";
 
 #The barcode whitelist for 10x data
 #737K-august-2016.txt to be used for v2 chemistry
 #3M-february-2018.txt to be used for v3 chemistry
-my $white_list = "/home/msnaveed/sra_local_repo/10x_genomics/3M-february-2018.txt"; 
+my $white_list = $barcode_whitelist;#"/home/msnaveed/sra_local_repo/10x_genomics/3M-february-2018.txt"; 
 
 
 my $species_output_dir = "";
 
 #This is the latest human annotation.gtf file
-my $human_gtf = "/home/msnaveed/sra_local_repo/chimera_genome/human_genome/v3/*.gtf";
+my $human_gtf = $gtf_human;#"/home/msnaveed/sra_local_repo/chimera_genome/human_genome/v3/*.gtf";
 
 #This is the latest mouse annotation.gtf file
-my $mouse_gtf = "/home/msnaveed/sra_local_repo/chimera_genome/altered_mouse_genome/v3/*.gtf";
+my $mouse_gtf = $gtf_mouse; #"/home/msnaveed/sra_local_repo/chimera_genome/altered_mouse_genome/v3/*.gtf";
 
 my $system_cmd;
 
@@ -103,12 +103,29 @@ for my $specie (qw(processFiles)) {
 		#Removing the SAM File as we have not the binary BAM version
 		$system_cmd = system("rm $prem_currentSamFile");
 
-
 		#Converting the newly created filtered BAM file to fastq using the perl script convertBamtToFastq.pl
 		my $sys1 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq1 $species_output_dir/mouse_R2.fastq";
 		my $sys2 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq2 $species_output_dir/mouse_R1.fastq";
-		system("$sys1");
-		system("$sys2");
+
+		foreach my $i (1, 2) {
+			my $pid = fork();
+			if ($pid==0) { # child
+				if($i==1){
+					exec("$sys1");
+				}
+				if($i==2){
+					exec("$sys2");	
+				}
+				die "Exec $i failed: $!\n";
+			} elsif (!defined $pid) {
+				warn "Fork $i failed: $!\n";
+			}
+		}
+
+		1 while wait() >= 0;
+
+		#system("$sys1");
+		#system("$sys2");
 
 
 	}
@@ -154,8 +171,25 @@ for my $specie (qw(processFiles)) {
 		my $sys2 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq2 $species_output_dir/human_R1.fastq";
 		
 
-		system("$sys1");
-		system("$sys2");
+		foreach my $i (1, 2) {
+			my $pid = fork();
+			if ($pid==0) { # child
+				if($i==1){
+					exec("$sys1");
+				}
+				if($i==2){
+					exec("$sys2");	
+				}
+				die "Exec $i failed: $!\n";
+			} elsif (!defined $pid) {
+				warn "Fork $i failed: $!\n";
+			}
+		}
+
+		1 while wait() >= 0;
+
+		#system("$sys1");
+		#system("$sys2");
 
 
 	}
@@ -175,8 +209,8 @@ my $results_dir = "$base_output_dir/results";
 my $exp_dir = "";
 
 #Paths to human and mouse genome index directories
-my $mouse_genome_dir = "/home/msnaveed/sra_local_repo/chimera_genome/mouse_index/v3";
-my $human_genome_dir = "/home/msnaveed/sra_local_repo/chimera_genome/human_index/v3";
+my $mouse_genome_dir = $mouse_index; #"/home/msnaveed/sra_local_repo/chimera_genome/mouse_index/v3";
+my $human_genome_dir = $human_index; #"/home/msnaveed/sra_local_repo/chimera_genome/human_index/v3";
 
 #Creating the results directory
 system("mkdir $results_dir");

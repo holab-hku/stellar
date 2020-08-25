@@ -4,7 +4,10 @@ use strict; use warnings;
 #The number of threads to be used. The more the faster
 my $threads = 16;
 
-#Takes the bam file, the original fastq file that was used to generate the STAR BAM file and the path+name of the fastq file that should be produced
+### Takes the following:
+# BAM: The bam file produced by STAR
+# fastq: The original fastq file that was used to generate the STAR BAM file
+# outputFastq: The path+name of the fastq file that should be produced
 my ($BAM, $fastq, $outputFastq) = ($ARGV[0], $ARGV[1], $ARGV[2]);
 
 print("Inside Bam to fastq converter\n");

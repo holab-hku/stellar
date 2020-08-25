@@ -7,6 +7,12 @@ die"
 Usage: output_percent_mouse_genes_per_barcode.pl <Path/to/gencode.vM24.unique_gene_names.gtf> <Path/to/gencode.v33.unique_gene_names.gtf> <base_output_dir> <type> <threshold>
 " unless @ARGV==5;
 
+### Arguments
+# mouse_gtf: Mouse gtf file
+# human_gtf: Human gtf file
+# path: Path to the directory containing the filtered gene files
+# type: In general, this determines the file structure. It could be chimera, stellar or any other value
+# threshold: The value on the basis of which a particular barcode is classified as either mouse/human/unspecified. For eg if it is 80% then a barcode must have gene pct >=80% for either human/mouse for it to be classified otherwise it'll be regarded as 'unspecified'
 my ($mouse_gtf, $human_gtf, $path, $type, $threshold) = ($ARGV[0], $ARGV[1], $ARGV[2], $ARGV[3], $ARGV[4]);
 
 #Checking if correct files have been input
