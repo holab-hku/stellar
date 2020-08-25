@@ -37,17 +37,80 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   ### Result Structure:
   This should be the tree view of the resulting directories/files after succesffuly running this script.
   ```bash
-    {output_directory}
-      |
-      |__ processFiles
-      |
-      |__ results
-      |    |
-      |    |__ h: STAR results for the human reads present in the raw data input
-      |    |
-      |    |__ m: STAR results for the mouse reads present in the raw data input
-      |
-      |__ Log_STARAnalysis_{output_directory}.txt: The log file of the initial STAR run
+  .
+  ├── Log_STARAnalysis_L44TX3-1_S37.txt: #Log file produced by running initial STAR
+  ├── processFiles: This directory contains the initial STARsolo run results as well as the process of breaking down STAR produced BAM to individual human and mouse reads
+  │   ├── analysis
+  │   │   ├── Aligned.sortedByCoord.out.bam
+  │   │   ├── barcodes.tsv.gz
+  │   │   ├── features.tsv.gz
+  │   │   ├── HumanFilteredAligned.out.sam.bam
+  │   │   ├── human_R1.fastq.gz
+  │   │   ├── human_R2.fastq.gz
+  │   │   ├── matrix.csv
+  │   │   ├── matrix.mtx.gz
+  │   │   ├── MouseFilteredAligned.out.sam.bam
+  │   │   ├── mouse_R1.fastq.gz
+  │   │   ├── mouse_R2.fastq.gz
+  │   │   └── processFiles_barcodes_classification.csv
+  │   ├── Log.final.out
+  │   ├── Log.out
+  │   ├── Log.progress.out
+  │   ├── SJ.out.tab
+  │   └── Solo.out
+  │       ├── Barcodes.stats
+  │       └── Gene
+  │           ├── Features.stats
+  │           ├── filtered
+  │           ├── raw
+  │           │   ├── barcodes.tsv
+  │           │   ├── features.tsv
+  │           │   └── matrix.mtx
+  │           ├── Summary.csv
+  │           └── UMIperCellSorted.txt
+  └── results
+      ├── h
+      │   ├── Aligned.sortedByCoord.out.bam
+      │   ├── Log.final.out
+      │   ├── Log.out
+      │   ├── Log.progress.out
+      │   ├── SJ.out.tab
+      │   └── Solo.out
+      │       ├── Barcodes.stats
+      │       └── Gene
+      │           ├── Features.stats
+      │           ├── filtered
+      │           │   ├── barcodes.tsv
+      │           │   ├── features.tsv
+      │           │   └── matrix.mtx
+      │           ├── raw
+      │           │   ├── barcodes.tsv
+      │           │   ├── features.tsv
+      │           │   └── matrix.mtx
+      │           ├── Summary.csv
+      │           └── UMIperCellSorted.txt
+      ├── Human_Log_STARAnalysis.txt
+      ├── m
+      │   ├── Aligned.sortedByCoord.out.bam
+      │   ├── Log.final.out
+      │   ├── Log.out
+      │   ├── Log.progress.out
+      │   ├── SJ.out.tab
+      │   └── Solo.out
+      │       ├── Barcodes.stats
+      │       └── Gene
+      │           ├── Features.stats
+      │           ├── filtered
+      │           │   ├── barcodes.tsv
+      │           │   ├── features.tsv
+      │           │   └── matrix.mtx
+      │           ├── raw
+      │           │   ├── barcodes.tsv
+      │           │   ├── features.tsv
+      │           │   └── matrix.mtx
+      │           ├── Summary.csv
+      │           └── UMIperCellSorted.txt
+      └── Mouse_Log_STARAnalysis.txt
   ```
   
   ### Example Run
