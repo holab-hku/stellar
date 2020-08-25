@@ -58,6 +58,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   - Make sure Rscript and Perl is also installed and is already on the PATH variable.
   - Use <code>nohup ... &</code> so that the command doesn't break upon logging off and continue to run in the backgroun even after signing off.
   - Within each script, code is commented for convenience
+  - To learn on how to create genome index files visit the holab page[https://holab-hku.github.io/10X-workshop/processing-10x-rna-seq-data.html]
 
 ## File Hierarchy
 
@@ -71,7 +72,14 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   
 ### DataMart Files
 Present in the holab storage directory: <code>/storage/holab/datamart</code>
-  - 
+  - gencode.v33.unique_gene_names.gtf: Human gtf fie with unique gene names
+  - gencode.vM24.unique_gene_names.gtf: Mouse gtf with unique gene names
+  - gencode.v33.vM24.concat.unique_gene_names.gtf : Concatenated human + mouse gtf file with unique gene names
+  - human_index: Indexed files generated using human genome
+  - mouse_index: Indexed files generated using mouse genome
+  - chimera_index: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
+  - STAR: Executable directory of STAR version 2.7.3a
+  - samtools-1.10: Executable directory of samtools version samtools 1.10
 
 ## Time Complexity
 The time it takes to run the script is directly related to the size of the fastq files fed. 
