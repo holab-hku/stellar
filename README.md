@@ -143,6 +143,8 @@ Present in the holab storage directory: <code>/storage/holab/datamart</code>
   - **human_index**: Indexed files generated using human genome
   - **mouse_index**: Indexed files generated using mouse genome
   - **chimera_index**: Indexed files generated using human + mouse genome. Concatenated gtf file and two fasta files were used
+  - **3M-february-2018.txt**: Most updated barcode whitelist for v3 chemistry
+  - **737K-august-2016.txt**: Barcode whitelist for v2 chemistry
   - **processed_gtf_files**: This directory contains the files for producing concatenated(human+mouse) gtf and raw human and mouse gtfs<br/>
       |<br/>
       |__ **create_gtf.pl**: Contains the logic to obtain individual and concatenated versions of human and mouse gtfs because of common gene names between mouse and human gtfs<br/>
