@@ -13,7 +13,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
    
   </li>
   
-  <li> <strong>Create a directory and clone this repository:</strong> <code>git clone </code> </li>
+  <li> <strong>Create a directory and clone this repository:</strong> <code>git clone https://github.com/holab-hku/stellar.git</code> </li>
   <li> <strong>Running the main script:</strong></li><br>
 </ol>
 
