@@ -107,14 +107,16 @@ for my $specie (qw(processFiles)) {
 		my $sys1 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq1 $species_output_dir/mouse_R2.fastq";
 		my $sys2 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq2 $species_output_dir/mouse_R1.fastq";
 
+		#Running the conversion of BAM to fastq in parallel because we need to individualy convert for R1 and R2. Converting in parallel would save us a lot of time
+		#Logic: Creating two child processes and letting these complete
 		foreach my $i (1, 2) {
 			my $pid = fork();
 			if ($pid==0) { # child
 				if($i==1){
-					exec("$sys1");
+					exec("$sys1"); #Exec shall exit the child process
 				}
 				if($i==2){
-					exec("$sys2");	
+					exec("$sys2");	#Exec shall exit the child process
 				}
 				die "Exec $i failed: $!\n";
 			} elsif (!defined $pid) {
@@ -171,14 +173,16 @@ for my $specie (qw(processFiles)) {
 		my $sys2 = "perl convertBamtToFastq.pl $prem_currentSamFile.bam $Fastq2 $species_output_dir/human_R1.fastq";
 		
 
+		#Running the conversion of BAM to fastq in parallel because we need to individualy convert for R1 and R2. Converting in parallel would save us a lot of time
+		#Logic: Creating two child processes and letting these complete
 		foreach my $i (1, 2) {
 			my $pid = fork();
 			if ($pid==0) { # child
 				if($i==1){
-					exec("$sys1");
+					exec("$sys1"); #Exec shall exit the child process
 				}
 				if($i==2){
-					exec("$sys2");	
+					exec("$sys2"); #Exec shall exit the child process
 				}
 				die "Exec $i failed: $!\n";
 			} elsif (!defined $pid) {
