@@ -39,37 +39,37 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   ```bash
   .
   ├── Log_STARAnalysis_L44TX3-1_S37.txt: #Log file produced by running initial STAR
-  ├── processFiles: This directory contains the initial STARsolo run results as well as the process of breaking down STAR produced BAM to individual human and mouse reads
-  │   ├── analysis
-  │   │   ├── Aligned.sortedByCoord.out.bam
-  │   │   ├── barcodes.tsv.gz
-  │   │   ├── features.tsv.gz
-  │   │   ├── HumanFilteredAligned.out.sam.bam
-  │   │   ├── human_R1.fastq.gz
-  │   │   ├── human_R2.fastq.gz
-  │   │   ├── matrix.csv
-  │   │   ├── matrix.mtx.gz
-  │   │   ├── MouseFilteredAligned.out.sam.bam
-  │   │   ├── mouse_R1.fastq.gz
-  │   │   ├── mouse_R2.fastq.gz
-  │   │   └── processFiles_barcodes_classification.csv
-  │   ├── Log.final.out
-  │   ├── Log.out
-  │   ├── Log.progress.out
-  │   ├── SJ.out.tab
-  │   └── Solo.out
+  ├── processFiles: #This directory contains the initial STARsolo run results as well as the process of breaking down STAR produced BAM to individual human and mouse reads
+  │   ├── analysis: #All the preprocessing for breaking down the raw fastq into individual human and mouse was done in this directory
+  │   │   ├── Aligned.sortedByCoord.out.bam: #Original sam file produced by STARSolo on raw input fastq
+  │   │   ├── barcodes.tsv.gz: #Brought from filtered dir and gzipped
+  │   │   ├── features.tsv.gz: #Brought from filtered dir and gzipped
+  │   │   ├── HumanFilteredAligned.out.sam.bam: #BAM file containing human barcodes that were present in the labelled csv file
+  │   │   ├── human_R1.fastq.gz: #Human R1 fastq produced from HumanFilteredAligned.out.sam.bam
+  │   │   ├── human_R2.fastq.gz: #HUman R2 fastq produced from HumanFilteredAligned.out.sam.bam
+  │   │   ├── matrix.csv: #Dense to sparse matrix conversion using R Seurat
+  │   │   ├── matrix.mtx.gz: #Brought from filtered dir and gzipped
+  │   │   ├── MouseFilteredAligned.out.sam.bam: #BAM file containing mouse barcodes that were present in the labelled csv file
+  │   │   ├── mouse_R1.fastq.gz: #Mouse R1 fastq produced from MouseFilteredAligned.out.sam.bam
+  │   │   ├── mouse_R2.fastq.gz: #Mouse R2 fastq produced from MouseFilteredAligned.out.sam.bam
+  │   │   └── processFiles_barcodes_classification.csv: # Labelled csv file produced using the threshold of pct species genes
+  │   ├── Log.final.out: #Original Log.final.out file produced by STARSolo
+  │   ├── Log.out: #Original Log.out file produced by STARSolo
+  │   ├── Log.progress.out: #Original Log.progress.out file produced by STARSolo
+  │   ├── SJ.out.tab: #Original SJ.out.tab file produced by STARSolo
+  │   └── Solo.out #Original Solo.out directory produced by STARSolo
   │       ├── Barcodes.stats
   │       └── Gene
   │           ├── Features.stats
-  │           ├── filtered
+  │           ├── filtered: #The three files barcodes.tsv, features.tsv and matrix.mtx originally present in this directory have been shifted to analysis dir
   │           ├── raw
   │           │   ├── barcodes.tsv
   │           │   ├── features.tsv
   │           │   └── matrix.mtx
   │           ├── Summary.csv
   │           └── UMIperCellSorted.txt
-  └── results
-      ├── h
+  └── results #This directory contains the final results that we are interested to get
+      ├── h: #Directory containing the STARsolo results upon running STARSolo on human reads which were separated earlier in processFiles dir
       │   ├── Aligned.sortedByCoord.out.bam
       │   ├── Log.final.out
       │   ├── Log.out
@@ -89,8 +89,8 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
       │           │   └── matrix.mtx
       │           ├── Summary.csv
       │           └── UMIperCellSorted.txt
-      ├── Human_Log_STARAnalysis.txt
-      ├── m
+      ├── Human_Log_STARAnalysis.txt: #Logs of running STAR on human reads which were separated earlier in processFiles dir
+      ├── m: #Directory containing the STARsolo results upon running STARSolo on mouse reads which were separated earlier in processFiles dir
       │   ├── Aligned.sortedByCoord.out.bam
       │   ├── Log.final.out
       │   ├── Log.out
@@ -110,7 +110,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
       │           │   └── matrix.mtx
       │           ├── Summary.csv
       │           └── UMIperCellSorted.txt
-      └── Mouse_Log_STARAnalysis.txt
+      └── Mouse_Log_STARAnalysis.txt #Logs of running STAR on mouse reads which were separated earlier in processFiles dir
   ```
   
   ### Example Run
