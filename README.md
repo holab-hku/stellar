@@ -36,6 +36,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
   
   ### Result Structure:
   This should be the tree view of the resulting directories/files after succesffuly running this script.
+  
   ```bash
   .
   ├── Log_STARAnalysis_L44TX3-1_S37.txt: #Log file produced by running initial STAR
@@ -112,6 +113,7 @@ Stellar is a software written in perl that takes in raw fastq files and uses STA
       │           └── UMIperCellSorted.txt
       └── Mouse_Log_STARAnalysis.txt #Logs of running STAR on mouse reads which were separated earlier in processFiles dir
   ```
+  Summary: There are two principal directories being produced inside the root directory that the user specify. These are 'processFiles' and 'results'. The processFile is where the initial STARSolo results on the raw input fastq are put. An additional directory is created called 'analysis' inside this processFiles directory. 'Aligned.sortedByCoord.out.bam' and the three files in the filtered dir('barcodes.tsv','features.tsv','matrix.mtx') are put into the 'analysis' dir. Now all the analysis takes place inside the 'analysis' dir. Spare matrix, labelled file and then individual human and mouse bam and fastq files are produced.
   
   ### Example Run
   ```ruby
